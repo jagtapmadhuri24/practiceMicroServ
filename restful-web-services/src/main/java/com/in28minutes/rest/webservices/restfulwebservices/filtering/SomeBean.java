@@ -1,8 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.filtering;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFilter;
 //This is part of static filtering:  @JSonIgnoreProperties(value={"field3"}) and @JsonIgnore
 //we can also use @JSonIgnoreProperties(value={"field3"})
+@JsonFilter("SomeBeanFilter")
 public class SomeBean {
 	//suppose "field3" is secure.
 	

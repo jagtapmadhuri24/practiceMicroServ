@@ -1,7 +1,13 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -11,18 +17,26 @@ import io.swagger.annotations.ApiModelProperty;
  * @ApiModel and @ApiModelProperty is for Swagger documentation, present in io.swagger.annotation jar
  */
 @ApiModel(description="All desc abt user")
+@Entity
 public class User {
 	
-	
+	@Id
+	@GeneratedValue
+	@Column
 	private Integer id;
 	
+	@Column
 	@Size(min=2, message="Name should have 2 characters")
 	@ApiModelProperty(notes="Name should have 2 characters")
 	private String name;
 	
+	@Column
 	@Past(message="Birth Date should be in past")
 	@ApiModelProperty(notes="Birth Date should be in past")
 	private Date birthDate;
+	
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
 	
 	protected User(){}
 	
@@ -55,6 +69,19 @@ public class User {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", posts=" + posts + "]";
 	}
 	
 	

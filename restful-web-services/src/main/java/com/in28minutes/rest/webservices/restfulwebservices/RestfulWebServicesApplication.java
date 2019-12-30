@@ -4,11 +4,12 @@ import java.util.Locale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
+//import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @SpringBootApplication
 public class RestfulWebServicesApplication {
@@ -25,6 +26,14 @@ public class RestfulWebServicesApplication {
 		return session;
 		
 	}
+	//For spring security
+	/*@Bean
+	public BasicAuthenticationEntryPoint basicAuthenticationEntryPoint(){
+		final BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new BasicAuthenticationEntryPoint();
+		basicAuthenticationEntryPoint.setRealmName("na");
+	
+		
+		return basicAuthenticationEntryPoint;}*/
 	
 	@Bean
 	public ResourceBundleMessageSource messageSource(){
